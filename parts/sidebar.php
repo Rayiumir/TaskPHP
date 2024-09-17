@@ -10,7 +10,7 @@
         </figure>
         <div class="mt-3">
             <a href="" class="btn btn-secondary btn-sm rounded-3" title="Edit Profile"><i class="fa-duotone fa-gear"></i></a>
-            <a href="" class="btn btn-danger btn-sm rounded-3" title="Signout"><i class="fa-duotone fa-sign-out"></i></a>
+            <a href="logout.php" class="btn btn-danger btn-sm rounded-3" title="Logout"><i class="fa-duotone fa-sign-out"></i></a>
         </div>
     </div>
     <div class="mt-3 p-3">
