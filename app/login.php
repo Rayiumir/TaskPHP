@@ -1,74 +1,73 @@
 <?php
 
 session_start();
+if (isset($_POST['user_name']) && isset($_POST['password'])) {
+    include "../conn.php";
 
-if(isset($_POST['username']) && isset($_POST['password'])){
-
-    include "../db.php";
-    function validate_input($data)
-    {
+    function validate_input($data) {
         $data = trim($data);
-        $data = stripcslashes($data);
+        $data = stripslashes($data);
         $data = htmlspecialchars($data);
-
         return $data;
     }
 
-    $username = validate_input($_POST['username']);
+    $user_name = validate_input($_POST['user_name']);
     $password = validate_input($_POST['password']);
 
-    if(empty($username)){
+    if (empty($user_name)) {
         $em = "User name is required";
         header("Location: ../login.php?error=$em");
         exit();
-    }elseif(empty($password)){
-        $em = "Password is required";
+    }else if (empty($password)) {
+        $em = "Password name is required";
         header("Location: ../login.php?error=$em");
         exit();
-    }else{
+    }else {
+
         $sql = "SELECT * FROM users WHERE username = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute($username);
+        $stmt->execute([$user_name]);
 
-        if ($stmt->rowCount() == 1){
-            $row = $stmt->fetch();
-            $idDB = $row['id'];
-            $usernameDB = $row['username'];
-            $passwordDB = $row['password'];
-            $roleDB = $row['role'];
+        if ($stmt->rowCount() == 1) {
+            $user = $stmt->fetch();
+            $usernameDB = $user['username'];
+            $passwordDB = $user['password'];
+            $roleDB = $user['role'];
+            $id = $user['id'];
 
-            if ($username === $usernameDB){
-                if(password_verify($password, $passwordDB)){
-                    if ($roleDB == "admin"){
-                        $_SESSION['id'] = $idDB;
-                        $_SESSION['username'] = $usernameDB;
+            if ($user_name === $usernameDB) {
+                if (password_verify($password, $passwordDB)) {
+                    if ($roleDB == "admin") {
                         $_SESSION['role'] = $roleDB;
-                        header("Location: ../index.php");
-                    }elseif($roleDB == "user"){
-                        $_SESSION['id'] = $idDB;
+                        $_SESSION['id'] = $id;
                         $_SESSION['username'] = $usernameDB;
-                        $_SESSION['role'] = $roleDB;
                         header("Location: ../index.php");
-                    }else{
-                        $em = "Unknown Error Occurred";
+                    }else if ($roleDB == 'employee') {
+                        $_SESSION['role'] = $roleDB;
+                        $_SESSION['id'] = $id;
+                        $_SESSION['username'] = $usernameDB;
+                        header("Location: ../index.php");
+                    }else {
+                        $em = "Unknown error occurred ";
                         header("Location: ../login.php?error=$em");
                         exit();
                     }
-                }else{
-                    $em = "Incorrect Username or Password";
+                }else {
+                    $em = "Incorrect username or password ";
                     header("Location: ../login.php?error=$em");
                     exit();
                 }
-            }else{
-                $em = "Incorrect Username or Password";
+            }else {
+                $em = "Incorrect username or password ";
                 header("Location: ../login.php?error=$em");
                 exit();
             }
         }
-    }
 
-}else{
-    $em = "Unknown Error Occurred";
+
+    }
+}else {
+    $em = "Unknown error occurred";
     header("Location: ../login.php?error=$em");
     exit();
 }

@@ -1,6 +1,5 @@
 <?php include ('parts/head.php') ?>
 <body>
-
     <div class="container">
         <div class="col-md-6 offset-md-3 mt-5">
             <?php if(isset($_GET['success'])) {?>
@@ -21,7 +20,7 @@
                         <form action="app/login.php" method="POST">
                             <div class="mb-3">
                                 <label for="Input1" class="form-label">Username</label>
-                                <input type="text" name="username" class="form-control rounded-5" id="Input1">
+                                <input type="text" name="user_name" class="form-control rounded-5" id="Input1">
                             </div>
                             <div class="mb-3">
                                 <label for="Password1" class="form-label">Password</label>
@@ -38,10 +37,4 @@
             </div>
         </div>
     </div>
-
-    <!-- Script -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/all.js"></script>
-</body>
-</html>
+<?php include ('parts/footer.php') ?>

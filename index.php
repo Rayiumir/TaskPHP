@@ -1,4 +1,9 @@
-<?php include ('parts/head.php') ?>
+<?php
+    session_start();
+    if (isset($_SESSION['role']) && isset($_SESSION['id']) ) {
+
+?>
+<?php include ('parts/head.php'); ?>
 <body>
     <!-- Wrapper -->
     <div class="d-flex" id="wrapper">
@@ -92,10 +97,10 @@
         <!-- #Page Content -->
     </div>
     <!-- #Wrapper -->
+<?php include('parts/footer.php'); ?>
+<?php }else{
+    header("Location: login.php");
+    exit();
+    }
+?>
 
-    <!-- Script -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/all.js"></script>
-</body>
-</html>
