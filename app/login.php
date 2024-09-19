@@ -42,7 +42,7 @@ if (isset($_POST['user_name']) && isset($_POST['password'])) {
                         $_SESSION['id'] = $id;
                         $_SESSION['username'] = $usernameDB;
                         header("Location: ../index.php");
-                    }else if ($roleDB == 'employee') {
+                    }else if ($roleDB == 'user') {
                         $_SESSION['role'] = $roleDB;
                         $_SESSION['id'] = $id;
                         $_SESSION['username'] = $usernameDB;

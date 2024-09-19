@@ -8,26 +8,31 @@
         <figure class="avatar">
             <img src="img/1.jpg" class="img-fluid" alt="">
         </figure>
-        <div class="mt-3">
-            <a href="" class="btn btn-secondary btn-sm rounded-3" title="Edit Profile"><i class="fa-duotone fa-gear"></i></a>
-            <a href="logout.php" class="btn btn-danger btn-sm rounded-3" title="Logout"><i class="fa-duotone fa-sign-out"></i></a>
-        </div>
+        <h2 class="fs-5 fw-bold mt-3"><?=$_SESSION['username']?></h2>
+    </div>
+    <?php if($_SESSION['role'] == "user"){ ?>
+    <div class="text-center mt-3">
+        <a href="" class="btn btn-secondary btn-sm rounded-3" title="Edit Profile"><i class="fa-duotone fa-gear"></i></a>
+        <a href="logout.php" class="btn btn-danger btn-sm rounded-3" title="Logout"><i class="fa-duotone fa-sign-out"></i></a>
     </div>
     <div class="mt-3 p-3">
         <div class="d-grid gep-3">
-            <a href="index.html" class="btn btn-light text-start border-0 rounded-3 mb-2"><i class="fa-duotone fa-home me-2"></i> Home </a>
+            <a href="" class="btn btn-light text-start border-0 rounded-3 mb-2"><i class="fa-duotone fa-home me-2"></i> Dashboard </a>
+            <a href="" class="btn btn-light text-start border-0 rounded-3 mb-2"><i class="fa-duotone fa-alarm-plus me-2"></i> Notifications </a>
+            <a href="" class="btn btn-light text-start border-0 rounded-3 mb-2"><i class="fa-duotone fa-tasks me-2"></i> My Tasks </a>
         </div>
-
-        <details class="js-list mt-2 mb-2">
-            <summary class="title js-title"><i class="fa-duotone fa-layer-plus"></i> example <span class="icon"></span></summary>
-            <div class="card rounded-3 mt-3 js-content border-0 shadow-sm">
-                <div class="card-body">
-                    <ul>
-                        <li class="mb-2"><a href="signup.html" class="text-decoration-none text-dark">Signup / Register</a></li>
-                    </ul>
-                </div>
-            </div>
-        </details>
-
     </div>
+    <?php }else{ ?>
+        <div class="text-center mt-3">
+            <a href="" class="btn btn-secondary btn-sm rounded-3" title="Edit Profile"><i class="fa-duotone fa-gear"></i></a>
+            <a href="logout.php" class="btn btn-danger btn-sm rounded-3" title="Logout"><i class="fa-duotone fa-sign-out"></i></a>
+        </div>
+        <div class="mt-3 p-3">
+            <div class="d-grid gep-3">
+                <a href="" class="btn btn-light text-start border-0 rounded-3 mb-2"><i class="fa-duotone fa-home me-2"></i> Dashboard </a>
+                <a href="" class="btn btn-light text-start border-0 rounded-3 mb-2"><i class="fa-duotone fa-users me-2"></i> Users </a>
+                <a href="" class="btn btn-light text-start border-0 rounded-3 mb-2"><i class="fa-duotone fa-tasks me-2"></i> Tasks </a>
+            </div>
+        </div>
+    <?php }?>
 </div>
