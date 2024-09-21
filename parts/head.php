@@ -7,6 +7,6 @@
     <title>Admin Ranger</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.css">
-    <link rel="stylesheet" href="css/reset.css">
+<!--    <link rel="stylesheet" href="css/reset.css">-->
     <link rel="stylesheet" href="css/style.css">
 </head>

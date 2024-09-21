@@ -2,7 +2,7 @@
 
 session_start();
 if (isset($_POST['user_name']) && isset($_POST['password'])) {
-    include "../conn.php";
+    include "../db.php";
 
     function validate_input($data) {
         $data = trim($data);
