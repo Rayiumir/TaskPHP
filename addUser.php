@@ -62,7 +62,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
 <!-- #Wrapper -->
 <?php include('parts/footer.php'); ?>
 <?php }else{
-    header("Location: addUser.php");
+    header("Location: login.php");
     exit();
 } ?>
 

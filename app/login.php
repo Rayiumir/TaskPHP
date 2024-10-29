@@ -1,21 +1,22 @@
 <?php
-
 session_start();
-if (isset($_POST['user_name']) && isset($_POST['password'])) {
+if (isset($_POST['username']) && isset($_POST['password'])) {
     include "../db.php";
 
     function validate_input($data) {
+
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
+
         return $data;
     }
 
-    $user_name = validate_input($_POST['user_name']);
+    $user_name = validate_input($_POST['username']);
     $password = validate_input($_POST['password']);
 
     if (empty($user_name)) {
-        $em = "User name is required";
+        $em = "Username is required";
         header("Location: ../login.php?error=$em");
         exit();
     }else if (empty($password)) {
@@ -30,22 +31,22 @@ if (isset($_POST['user_name']) && isset($_POST['password'])) {
 
         if ($stmt->rowCount() == 1) {
             $user = $stmt->fetch();
-            $usernameDB = $user['username'];
-            $passwordDB = $user['password'];
-            $roleDB = $user['role'];
+            $usernameDb = $user['username'];
+            $passwordDb = $user['password'];
+            $role = $user['role'];
             $id = $user['id'];
 
-            if ($user_name === $usernameDB) {
-                if (password_verify($password, $passwordDB)) {
-                    if ($roleDB == "admin") {
-                        $_SESSION['role'] = $roleDB;
+            if ($user_name === $usernameDb) {
+                if (password_verify($password, $passwordDb)) {
+                    if ($role == "admin") {
+                        $_SESSION['role'] = $role;
                         $_SESSION['id'] = $id;
-                        $_SESSION['username'] = $usernameDB;
+                        $_SESSION['username'] = $usernameDb;
                         header("Location: ../index.php");
-                    }else if ($roleDB == 'user') {
-                        $_SESSION['role'] = $roleDB;
+                    }else if ($role == 'user') {
+                        $_SESSION['role'] = $role;
                         $_SESSION['id'] = $id;
-                        $_SESSION['username'] = $usernameDB;
+                        $_SESSION['username'] = $usernameDb;
                         header("Location: ../index.php");
                     }else {
                         $em = "Unknown error occurred ";

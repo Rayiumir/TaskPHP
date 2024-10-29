@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
 
     if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['name']) && $_SESSION['role'] == 'admin') {
-        require_once "../db.php";
+        include "../db.php";
 
         function validate_input($data) {
             $data = trim($data);
@@ -49,6 +49,6 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
     }
 
 }else{
-    header("Location: ../addUser.php");
+    header("Location: ../login.php");
     exit();
 }

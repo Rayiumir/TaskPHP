@@ -20,7 +20,7 @@
                         <form action="app/login.php" method="POST">
                             <div class="mb-3">
                                 <label for="Input1" class="form-label">Username</label>
-                                <input type="text" name="user_name" class="form-control rounded-5" id="Input1">
+                                <input type="text" name="username" class="form-control rounded-5" id="Input1">
                             </div>
                             <div class="mb-3">
                                 <label for="Password1" class="form-label">Password</label>

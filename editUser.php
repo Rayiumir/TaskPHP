@@ -6,14 +6,14 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
     require_once "app/Model/User.php";
 
     if (!isset($_GET['id'])) {
-        header("Location: editUser.php");
+        header("Location: users.php");
         exit();
     }
     $id = $_GET['id'];
     $user = get_user_by_id($conn, $id);
 
     if ($user == 0) {
-        header("Location: editUser.php");
+        header("Location: users.php");
         exit();
     }
     ?>
@@ -64,6 +64,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
                                         <input type="password" class="form-control rounded-5" name="password" id="Input3" value="<?=$user['password']?>">
                                     </div>
                                 </div>
+                                <input type="text" name="id" value="<?=$user['id']?>" hidden>
                                 <button type="submit" class="btn btn-primary rounded-5"><i class="fa-duotone fa-edit"></i> Update </button>
                             </form>
                         </div>
@@ -77,7 +78,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
 <!-- #Wrapper -->
 <?php include('parts/footer.php'); ?>
 <?php }else{
-    header("Location: editUser.php");
+    header("Location: login.php");
     exit();
 } ?>
 

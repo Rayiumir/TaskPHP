@@ -19,7 +19,7 @@ function insert_user($conn, $data){
 }
 
 function updateUser($conn, $data){
-    $sql = "UPDATE users SET full_name=?, username=?, password=?, role=? WHERE id=? AND role=?";
+    $sql = "UPDATE users SET name=?, username=?, password=?, role=? WHERE id=? AND role=?";
     $stmt = $conn->prepare($sql);
     $stmt->execute($data);
 }
