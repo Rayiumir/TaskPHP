@@ -19,7 +19,7 @@
         <div class="d-grid gep-3">
             <a href="" class="btn btn-light text-start border-0 rounded-3 mb-2"><i class="fa-duotone fa-home me-2"></i> Dashboard </a>
             <a href="" class="btn btn-light text-start border-0 rounded-3 mb-2"><i class="fa-duotone fa-bell me-2"></i> Notifications </a>
-            <a href="" class="btn btn-light text-start border-0 rounded-3 mb-2"><i class="fa-duotone fa-tasks me-2"></i> My Tasks </a>
+            <a href="tasks.php" class="btn btn-light text-start border-0 rounded-3 mb-2"><i class="fa-duotone fa-tasks me-2"></i> My Tasks </a>
         </div>
     </div>
     <?php }else{ ?>
@@ -32,7 +32,7 @@
                 <a href="" class="btn btn-light text-start border-0 rounded-3 mb-2"><i class="fa-duotone fa-home me-2"></i> Dashboard </a>
                 <a href="" class="btn btn-light text-start border-0 rounded-3 mb-2"><i class="fa-duotone fa-bell me-2"></i> Notifications </a>
                 <a href="users.php" class="btn btn-light text-start border-0 rounded-3 mb-2"><i class="fa-duotone fa-users me-2"></i> Users </a>
-                <a href="" class="btn btn-light text-start border-0 rounded-3 mb-2"><i class="fa-duotone fa-tasks me-2"></i> Tasks </a>
+                <a href="tasks.php" class="btn btn-light text-start border-0 rounded-3 mb-2"><i class="fa-duotone fa-tasks me-2"></i> Tasks </a>
             </div>
         </div>
     <?php } ?>

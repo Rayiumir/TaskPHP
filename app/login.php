@@ -42,12 +42,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                         $_SESSION['role'] = $role;
                         $_SESSION['id'] = $id;
                         $_SESSION['username'] = $usernameDb;
-                        header("Location: ../index.php");
+                        header("Location: ../admin.php");
                     }else if ($role == 'user') {
                         $_SESSION['role'] = $role;
                         $_SESSION['id'] = $id;
                         $_SESSION['username'] = $usernameDb;
-                        header("Location: ../index.php");
+                        header("Location: ../admin.php");
                     }else {
                         $em = "Unknown error occurred ";
                         header("Location: ../login.php?error=$em");

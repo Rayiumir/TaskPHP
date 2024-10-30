@@ -1,22 +1,7 @@
 <?php
 
 session_start();
-if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "admin") {
-    require_once "db.php";
-    require_once "app/Model/User.php";
-
-    if (!isset($_GET['id'])) {
-        header("Location: users.php");
-        exit();
-    }
-    $id = $_GET['id'];
-    $user = get_user_by_id($conn, $id);
-
-    if ($user == 0) {
-        header("Location: users.php");
-        exit();
-    }
-    ?>
+if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "admin") { ?>
 <?php include ('parts/head.php'); ?>
 <body>
 <!-- Wrapper -->
@@ -45,27 +30,26 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
                                     <?php echo stripcslashes($_GET['error']) ?>
                                 </div>
                             <?php } ?>
-                            <form action="app/updateUser.php" method="POST">
+                            <form action="app/addUser.php" method="POST">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="Input1" class="form-label">Name</label>
-                                            <input type="text" class="form-control rounded-5" name="name" id="Input1" value="<?=$user['name']?>"">
+                                            <input type="text" class="form-control rounded-5" name="name" id="Input1" placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="Input2" class="form-label">Username</label>
-                                            <input type="text" class="form-control rounded-5" name="username" id="Input2" value="<?=$user['username']?>">
+                                            <input type="text" class="form-control rounded-5" name="username" id="Input2" placeholder="">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="Input3" class="form-label">Password</label>
-                                        <input type="password" class="form-control rounded-5" name="password" id="Input3" value="<?=$user['password']?>">
+                                        <input type="password" class="form-control rounded-5" name="password" id="Input3" placeholder="">
                                     </div>
                                 </div>
-                                <input type="text" name="id" value="<?=$user['id']?>" hidden>
-                                <button type="submit" class="btn btn-primary rounded-5"><i class="fa-duotone fa-edit"></i> Update </button>
+                                <button type="submit" class="btn btn-primary rounded-5"><i class="fa-duotone fa-send"></i> Submit </button>
                             </form>
                         </div>
                     </div>
@@ -78,9 +62,8 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
 <!-- #Wrapper -->
 <?php include('parts/footer.php'); ?>
 <?php }else{
-    header("Location: ../login.php");
+    header("Location: login.php");
     exit();
 } ?>
-
 
 
