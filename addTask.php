@@ -1,7 +1,13 @@
 <?php
 
 session_start();
-if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "admin") { ?>
+if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "admin") {
+include "db.php";
+include "app/Model/User.php";
+
+$users = get_all_users($conn);
+?>
+
 <?php include ('parts/head.php'); ?>
 <body>
 <!-- Wrapper -->
@@ -17,7 +23,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
         <div class="container">
             <div class="p-5 mt-5">
                 <div class="col-md-6 offset-md-3">
-                    <a href="users.php" type="submit" class="btn btn-light rounded-5 mb-3"><i class="fa-duotone fa-users"></i> Users </a>
+                    <h3 class="text-center">Create Task</h3>
                     <div class="card rounded-4">
                         <div class="card-body">
                             <?php if(isset($_GET['success'])) {?>
@@ -30,23 +36,33 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
                                     <?php echo stripcslashes($_GET['error']) ?>
                                 </div>
                             <?php } ?>
-                            <form action="app/addUser.php" method="POST">
+                            <form action="app/addTask.php" method="POST">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="Input1" class="form-label">Name</label>
-                                            <input type="text" class="form-control rounded-5" name="name" id="Input1" placeholder="">
+                                            <label for="Input1" class="form-label">Title</label>
+                                            <input type="text" class="form-control rounded-5" name="title" id="Input1" placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="Input2" class="form-label">Username</label>
-                                            <input type="text" class="form-control rounded-5" name="username" id="Input2" placeholder="">
+                                            <label for="Input2" class="form-label">Assigned to</label>
+                                            <select name="assigned_to" class="form-control rounded-5">
+                                                <option value="0">Select employee</option>
+                                                <?php if ($users !=0) {
+                                                    foreach ($users as $user) {?>
+                                                        <option value="<?=$user['id']?>"><?=$user['name']?></option>
+                                                <?php }
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="Input3" class="form-label">Password</label>
-                                        <input type="password" class="form-control rounded-5" name="password" id="Input3" placeholder="">
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label for="Input2" class="form-label">Description</label>
+                                            <textarea type="text" class="form-control rounded-4" name="description" id="Input2" placeholder=""></textarea>
+                                        </div>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary rounded-5"><i class="fa-duotone fa-send"></i> Submit </button>
