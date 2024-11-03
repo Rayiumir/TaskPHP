@@ -2,8 +2,8 @@
 
     session_start();
     if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "admin") {
-        require_once ('db.php');
-        require_once ('app/Model/User.php');
+        include ('db.php');
+        include ('app/Model/User.php');
         $users = get_all_users($conn);
 ?>
 <?php include ('parts/head.php'); ?>

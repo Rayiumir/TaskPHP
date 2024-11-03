@@ -32,7 +32,6 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
         <div class="container">
             <div class="p-5 mt-5">
                 <div class="col-md-6 offset-md-3">
-                    <a href="users.php" type="submit" class="btn btn-light rounded-5 mb-3"><i class="fa-duotone fa-users"></i> Users </a>
                     <div class="card rounded-4">
                         <div class="card-body">
                             <?php if(isset($_GET['success'])) {?>

@@ -2,29 +2,28 @@
 
 session_start();
 if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "admin") {
-    include "db.php";
-    include "app/Model/User.php";
+    require_once "db.php";
+    require_once "app/Model/Task.php";
 
     if (!isset($_GET['id'])) {
-        header("Location: users.php");
+        header("Location: tasks.php");
         exit();
     }
     $id = $_GET['id'];
-    $user = get_user_by_id($conn, $id);
+    $task = get_task_by_id($conn, $id);
 
-    if ($user == 0) {
-        header("Location: users.php");
+    if ($task == 0) {
+        header("Location: tasks.php");
         exit();
     }
 
-    $data = array($id, "user");
-    deleteUser($conn, $data);
+    $data = array($id);
+    deleteTask($conn, $data);
     $sm = "Deleted Successfully";
-    header("Location: users.php?success=$sm");
+    header("Location: tasks.php?success=$sm");
     exit();
 
 } else {
     header("Location: login.php");
     exit();
 }
-
