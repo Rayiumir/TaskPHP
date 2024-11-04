@@ -26,7 +26,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
             $data = array($status, $id);
             updateTaskStatus($conn, $data);
 
-            $em = "Task updated successfully";
+            $em = "Task Status updated successfully";
             header("Location: ../myTasks.php?success=$em&id=$id");
             exit();
 
