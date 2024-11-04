@@ -41,3 +41,22 @@ function get_all_tasks($conn){
 
     return $tasks;
 }
+
+
+function get_all_tasks_id($conn, $id){
+    $sql = "SELECT * FROM tasks WHERE assigned_to=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$id]);
+
+    if($stmt->rowCount() > 0){
+        $tasks = $stmt->fetchAll();
+    }else $tasks = 0;
+
+    return $tasks;
+}
+
+function updateTaskStatus($conn, $data){
+    $sql = "UPDATE tasks SET status=? WHERE id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($data);
+}

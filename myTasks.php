@@ -1,12 +1,11 @@
 <?php
 
 session_start();
-if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "admin") {
+if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
     include ('db.php');
     include ('app/Model/Task.php');
-    include "app/Model/User.php";
-    $tasks = get_all_tasks($conn);
-    $users = get_all_users($conn);
+    include ('app/Model/User.php');
+    $tasks = get_all_tasks_id($conn, $_SESSION['id']);
 ?>
 <?php include ('parts/head.php'); ?>
 <body>
@@ -32,7 +31,6 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
                         <?php echo stripcslashes($_GET['error']) ?>
                     </div>
                 <?php } ?>
-                <a href="addTask.php" type="button" class="btn btn-primary rounded-5"><i class="fa-duotone fa-plus"></i> Add Task </a>
                 <?php if ($tasks != 0) { ?>
                     <table class="table table-bordered mt-3">
                         <thead>
@@ -40,7 +38,6 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
                             <th scope="col">#</th>
                             <th scope="col">Title</th>
                             <th scope="col">Description</th>
-                            <th scope="col">Assigned to</th>
                             <th scope="col">Status</th>
                             <th scope="col">Created AT</th>
                             <th scope="col">Action</th>
@@ -52,26 +49,17 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
                                 <th scope="row" width="50px"><?= $row['id']; ?></th>
                                 <td width="200px"><?= $row['title']; ?></td>
                                 <td width="200px"><?= $row['description']; ?></td>
-                                <td width="100px">
-                                    <?php
-                                    foreach ($users as $user) {
-                                        if($user['id'] == $row['assigned_to']){
-                                            echo $user['name'];
-                                        }}
-                                    ?>
-                                </td>
                                 <td width="100px"><?= $row['status']; ?></td>
                                 <td width="100px"><?= $row['created_at']; ?></td>
                                 <td width="100px" class="text-center">
-                                    <a href="editTask.php?id=<?= $row['id']; ?>" class="text-decoration-none text-secondary" title="Edit Task"><i class="fa-duotone fa-user-edit"></i></a>
-                                    <a href="deleteTask.php?id=<?= $row['id']; ?>" class="text-decoration-none text-danger" title="Delete Task"><i class="fa-duotone fa-trash"></i></a>
+                                    <a href="editTaskEm.php?id=<?= $row['id']; ?>" class="text-decoration-none text-secondary" title="Edit Task"><i class="fa-duotone fa-user-edit"></i></a>
                                 </td>
                             </tr>
                         <?php } ?>
                         </tbody>
                     </table>
                 <?php }else { ?>
-                    <h3>Empty</h3>
+                    <h3 class="mt-3 text-center fs-4 fw-bold">Empty</h3>
                 <?php  } ?>
             </div>
         </div>

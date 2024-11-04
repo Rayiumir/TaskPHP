@@ -1,23 +1,16 @@
-@font-face {
-    font-family: FiraCode;
-    src: url("../fonts/FiraCode-Regular.woff2") format("woff2");
-    font-style: normal;
-    font-weight: 300;
-    font-display: swap;
+/* Import the fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap');
+
+/* HTML */
+
+body {
+    font-family: 'Vazirmatn', 'Ubuntu Mono', monospace;
+    background-color: #ecf0f1;
+    color: #34495e;
 }
 
-@font-face {
-    font-family: FiraCode;
-    src: url("../fonts/FiraCode-Bold.woff2") format("woff2");
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-}
-body {
-    font-family: FiraCode;
-    background-color: #e8e8e8;
-    color: #222;
-}
 #wrapper {
     overflow-x: hidden;
 }
