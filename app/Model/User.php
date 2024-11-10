@@ -36,6 +36,12 @@ function get_user_by_id($conn, $id){
     return $user;
 }
 
+function updateProfile($conn, $data){
+    $sql = "UPDATE users SET name=?,  password=? WHERE id=? ";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($data);
+}
+
 function deleteUser($conn, $data){
     $sql = "DELETE FROM users WHERE id=? AND role=?";
     $stmt = $conn->prepare($sql);
