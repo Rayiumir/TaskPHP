@@ -42,14 +42,11 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
                                     </div>
                                     <div class="mb-3">
                                         <label for="Input1" class="form-label">New Password</label>
-                                        <input type="text" class="form-control rounded-5" name="newPassword" id="Input1">
+                                        <input type="password" class="form-control rounded-5" name="password" id="Input1">
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="Input1" class="form-label">Confirm Password</label>
-                                        <input type="text" class="form-control rounded-5" name="confirmPassword" id="Input1">
-                                    </div>
+
                                     <div class="d-grid gap-2">
-                                        <button class="btn btn-primary rounded-5" type="button"><i class="fa-duotone fa-send"></i> Update Profile </button>
+                                        <button class="btn btn-primary rounded-5" type="submit"><i class="fa-duotone fa-send"></i> Update Profile </button>
                                     </div>
                                 </form>
                             </div>

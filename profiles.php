@@ -21,19 +21,20 @@ $user = get_user_by_id($conn, $_SESSION['id']);
         <!-- #Navbar -->
         <div class="container">
             <div class="card-body mt-5">
-                <?php if(isset($_GET['success'])) {?>
-                    <div class="alert alert-success rounded-4 mb-3" role="alert">
-                        <?php echo stripcslashes($_GET['success']) ?>
-                    </div>
-                <?php } ?>
-                <?php if(isset($_GET['error'])) {?>
-                    <div class="alert alert-danger rounded-4 mb-3" role="alert">
-                        <?php echo stripcslashes($_GET['error']) ?>
-                    </div>
-                <?php } ?>
+
                 <div class="col-md-4 offset-md-3">
                     <div class="card rounded-4">
                         <div class="card-body">
+                            <?php if(isset($_GET['success'])) {?>
+                                <div class="alert alert-success rounded-4 mb-3" role="alert">
+                                    <?php echo stripcslashes($_GET['success']) ?>
+                                </div>
+                            <?php } ?>
+                            <?php if(isset($_GET['error'])) {?>
+                                <div class="alert alert-danger rounded-4 mb-3" role="alert">
+                                    <?php echo stripcslashes($_GET['error']) ?>
+                                </div>
+                            <?php } ?>
                             <table class="table">
                                 <tr>
                                     <td>Full Name</td>
