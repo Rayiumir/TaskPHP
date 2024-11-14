@@ -1,13 +1,13 @@
 <?php
 
 function insertTask($conn, $data){
-    $sql = "INSERT INTO tasks (title, description, assigned_to) VALUES(?,?,?)";
+    $sql = "INSERT INTO tasks (title, description, assigned_to, date) VALUES(?,?,?,?)";
     $stmt = $conn->prepare($sql);
     $stmt->execute($data);
 }
 
 function updateTask($conn, $data){
-    $sql = "UPDATE tasks SET title=?, description=?, assigned_to=? WHERE id=? ";
+    $sql = "UPDATE tasks SET title=?, description=?, assigned_to=?, date=? WHERE id=? ";
     $stmt = $conn->prepare($sql);
     $stmt->execute($data);
 }

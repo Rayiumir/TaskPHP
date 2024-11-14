@@ -24,7 +24,6 @@
     </div>
     <?php }else{ ?>
         <div class="text-center mt-3">
-            <a href="profiles.php" class="btn btn-secondary btn-sm rounded-3" title="Edit Profile"><i class="fa-duotone fa-gear"></i></a>
             <a href="logout.php" class="btn btn-danger btn-sm rounded-3" title="Logout"><i class="fa-duotone fa-sign-out"></i></a>
         </div>
         <div class="mt-3 p-3">

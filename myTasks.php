@@ -50,7 +50,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
                                 <td width="200px"><?= $row['title']; ?></td>
                                 <td width="200px"><?= $row['description']; ?></td>
                                 <td width="100px"><?= $row['status']; ?></td>
-                                <td width="100px"><?= $row['created_at']; ?></td>
+                                <td width="100px"><?= $row['date']; ?></td>
                                 <td width="100px" class="text-center">
                                     <a href="editTaskEm.php?id=<?= $row['id']; ?>" class="text-decoration-none text-secondary" title="Edit Task"><i class="fa-duotone fa-user-edit"></i></a>
                                 </td>

@@ -42,7 +42,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
                             <th scope="col">Description</th>
                             <th scope="col">Assigned to</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Created AT</th>
+                            <th scope="col">Date AT</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
@@ -61,7 +61,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
                                     ?>
                                 </td>
                                 <td width="100px"><?= $row['status']; ?></td>
-                                <td width="100px"><?= $row['created_at']; ?></td>
+                                <td width="100px"><?= $row['date']; ?></td>
                                 <td width="100px" class="text-center">
                                     <a href="editTask.php?id=<?= $row['id']; ?>" class="text-decoration-none text-secondary" title="Edit Task"><i class="fa-duotone fa-user-edit"></i></a>
                                     <a href="deleteTask.php?id=<?= $row['id']; ?>" class="text-decoration-none text-danger" title="Delete Task"><i class="fa-duotone fa-trash"></i></a>

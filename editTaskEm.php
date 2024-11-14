@@ -48,13 +48,19 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
                                 <?php } ?>
                                 <form action="app/updateTaskUser.php" method="POST">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="Input1" class="form-label">Title</label>
                                                 <p><?=$task['title']?></p>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="Input1" class="form-label">Date AT</label>
+                                                <p><?=$task['date']?></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="Input2" class="form-label">Status</label>
                                                 <select name="status" class="form-control rounded-5">
