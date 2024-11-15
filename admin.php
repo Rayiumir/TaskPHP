@@ -1,6 +1,8 @@
 <?php
     session_start();
     if (isset($_SESSION['role']) && isset($_SESSION['id']) ) {
+        
+}
 ?>
 <?php include ('parts/head.php'); ?>
 <body>
