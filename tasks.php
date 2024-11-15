@@ -5,7 +5,19 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
     include ('db.php');
     include ('app/Model/Task.php');
     include "app/Model/User.php";
-    $tasks = get_all_tasks($conn);
+    if (isset($_GET['date']) &&  $_GET['date'] == "Today") {
+        $tasks = all_tasks_today($conn);
+        $num_task = count_tasks_today($conn);
+    }else if (isset($_GET['date']) &&  $_GET['date'] == "Over") {
+        $tasks = all_tasks_over($conn);
+        $num_task = count_tasks_over($conn);
+    }else if (isset($_GET['date']) &&  $_GET['date'] == "No Deadline") {
+        $tasks = all_tasks_NoDeadline($conn);
+        $num_task = count_tasks_NoDeadline($conn);
+    }else{
+        $tasks = all_tasks($conn);
+        $countTasks = countTasks($conn);
+    }
     $users = get_all_users($conn);
 ?>
 <?php include ('parts/head.php'); ?>
@@ -32,7 +44,18 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
                         <?php echo stripcslashes($_GET['error']) ?>
                     </div>
                 <?php } ?>
+                <a href="tasks.php" type="button" class="btn btn-primary position-relative rounded-5">
+                    <i class="fa-duotone fa-tasks"></i>
+                    ALL Tasks
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <?=$countTasks;?>
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                </a>
                 <a href="addTask.php" type="button" class="btn btn-primary rounded-5"><i class="fa-duotone fa-plus"></i> Add Task </a>
+                <a href="tasks.php?date=Today" type="button" class="btn btn-primary rounded-5"><i class="fa-duotone fa-calendar-day"></i> Due Today</a>
+                <a href="tasks.php?date=Over" type="button" class="btn btn-primary rounded-5"><i class="fa-duotone fa-solid fa-hourglass-end"></i> Over Due</a>
+                <a href="tasks.php?date=Deadline" type="button" class="btn btn-primary rounded-5"><i class="fa-duotone fa-solid fa-do-not-enter"></i> No Deadline</a>
                 <?php if ($tasks != 0) { ?>
                     <table class="table table-bordered mt-3">
                         <thead>
@@ -71,7 +94,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
                         </tbody>
                     </table>
                 <?php }else { ?>
-                    <h3>Empty</h3>
+                    <h3 class="text-center mt-4">Empty</h3>
                 <?php  } ?>
             </div>
         </div>

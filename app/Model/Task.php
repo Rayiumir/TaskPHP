@@ -30,7 +30,7 @@ function deleteTask($conn, $data){
     $stmt->execute($data);
 }
 
-function get_all_tasks($conn){
+function all_tasks($conn){
     $sql = "SELECT * FROM tasks ORDER BY id DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute([]);
@@ -60,3 +60,70 @@ function updateTaskStatus($conn, $data){
     $stmt = $conn->prepare($sql);
     $stmt->execute($data);
 }
+
+function countTasks($conn){
+    $sql = "SELECT id FROM tasks";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([]);
+
+    return $stmt->rowCount();
+}
+
+function all_tasks_today($conn){
+    $sql = "SELECT * FROM tasks WHERE date = CURDATE() AND status != 'completed' ORDER BY id DESC";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([]);
+
+    if($stmt->rowCount() > 0){
+        $tasks = $stmt->fetchAll();
+    }else $tasks = 0;
+
+    return $tasks;
+}
+
+function count_tasks_today($conn){
+    $sql = "SELECT id FROM tasks WHERE date = CURDATE() AND status != 'completed'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([]);
+
+    return $stmt->rowCount();
+}
+
+function all_tasks_over($conn){
+    $sql = "SELECT * FROM tasks WHERE date < CURDATE() AND status != 'completed' ORDER BY id DESC";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([]);
+
+    if($stmt->rowCount() > 0){
+        $tasks = $stmt->fetchAll();
+    }else $tasks = 0;
+
+    return $tasks;
+}
+function count_tasks_over($conn){
+    $sql = "SELECT id FROM tasks WHERE date < CURDATE() AND status != 'completed'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([]);
+
+    return $stmt->rowCount();
+}
+
+function all_tasks_NoDeadline($conn){
+    $sql = "SELECT * FROM tasks WHERE status != 'completed' AND date IS NULL OR date = '0000-00-00' ORDER BY id DESC";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([]);
+
+    if($stmt->rowCount() > 0){
+        $tasks = $stmt->fetchAll();
+    }else $tasks = 0;
+
+    return $tasks;
+}
+function count_tasks_NoDeadline($conn){
+    $sql = "SELECT id FROM tasks WHERE status != 'completed' AND date IS NULL OR date = '0000-00-00'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([]);
+
+    return $stmt->rowCount();
+}
+
