@@ -10,22 +10,22 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
         $countToday = count_tasks_today($conn);
     }else if (isset($_GET['date']) &&  $_GET['date'] == "Over") {
         $tasks = all_tasks_over($conn);
-        $countOver = count_tasks_over($conn);
+        $countOver = countTasksOver($conn);
     }else if (isset($_GET['date']) &&  $_GET['date'] == "No Deadline") {
         $tasks = all_tasks_NoDeadline($conn);
-        $conutDeadline = count_tasks_NoDeadline($conn);
+        $conutDeadline = countTasksNoDeadline($conn);
     }else{
         $tasks = all_tasks($conn);
         $countTasks = countTasks($conn);
         $countToday = count_tasks_today($conn);
-        $countOver = count_tasks_over($conn);
-        $conutDeadline = count_tasks_NoDeadline($conn);
+        $countOver = countTasksOver($conn);
+        $conutDeadline = countTasksNoDeadline($conn);
     }
     $users = get_all_users($conn);
     $countTasks = countTasks($conn);
     $countToday = count_tasks_today($conn);
-    $countOver = count_tasks_over($conn);
-    $conutDeadline = count_tasks_NoDeadline($conn);
+    $countOver = countTasksOver($conn);
+    $conutDeadline = countTasksNoDeadline($conn);
 ?>
 <?php include ('parts/head.php'); ?>
 <body>

@@ -47,3 +47,11 @@ function updateProfile($conn, $data){
     $stmt = $conn->prepare($sql);
     $stmt->execute($data);
 }
+
+function countUsers($conn){
+    $sql = "SELECT id FROM users WHERE role='user'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([]);
+
+    return $stmt->rowCount();
+}

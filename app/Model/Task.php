@@ -100,7 +100,7 @@ function all_tasks_over($conn){
 
     return $tasks;
 }
-function count_tasks_over($conn){
+function countTasksOver($conn){
     $sql = "SELECT id FROM tasks WHERE date < CURDATE() AND status != 'completed'";
     $stmt = $conn->prepare($sql);
     $stmt->execute([]);
@@ -119,11 +119,92 @@ function all_tasks_NoDeadline($conn){
 
     return $tasks;
 }
-function count_tasks_NoDeadline($conn){
+function countTasksNoDeadline($conn){
     $sql = "SELECT id FROM tasks WHERE status != 'completed' AND date IS NULL OR date = '0000-00-00'";
     $stmt = $conn->prepare($sql);
     $stmt->execute([]);
 
     return $stmt->rowCount();
 }
+
+function countMyTasks($conn, $id){
+    $sql = "SELECT id FROM tasks WHERE assigned_to=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$id]);
+
+    return $stmt->rowCount();
+}
+
+function countTasksOverdue($conn, $id){
+    $sql = "SELECT id FROM tasks WHERE due_date < CURDATE() AND status != 'completed' AND assigned_to=? AND date != '0000-00-00'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$id]);
+
+    return $stmt->rowCount();
+}
+
+function countMyTasksNoDeadline($conn, $id){
+    $sql = "SELECT id FROM tasks WHERE assigned_to=? AND status != 'completed' AND date IS NULL OR date = '0000-00-00'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$id]);
+
+    return $stmt->rowCount();
+}
+
+function countMyPendingTasks($conn, $id){
+    $sql = "SELECT id FROM tasks WHERE status = 'pending' AND assigned_to=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$id]);
+
+    return $stmt->rowCount();
+}
+
+function countMyInProgressTasks($conn, $id){
+    $sql = "SELECT id FROM tasks WHERE status = 'in_progress' AND assigned_to=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$id]);
+
+    return $stmt->rowCount();
+}
+
+function countMyCompletedTasks($conn, $id){
+    $sql = "SELECT id FROM tasks WHERE status = 'completed' AND assigned_to=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$id]);
+
+    return $stmt->rowCount();
+}
+
+function countPendingTasks($conn){
+    $sql = "SELECT id FROM tasks WHERE status = 'pending'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([]);
+
+    return $stmt->rowCount();
+}
+
+function countInProgressTasks($conn){
+    $sql = "SELECT id FROM tasks WHERE status = 'in_progress'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([]);
+
+    return $stmt->rowCount();
+}
+
+function countCompletedTasks($conn){
+    $sql = "SELECT id FROM tasks WHERE status = 'completed'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([]);
+
+    return $stmt->rowCount();
+}
+
+function countTasksDuetoday($conn){
+    $sql = "SELECT id FROM tasks WHERE date = CURDATE() AND status != 'completed'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([]);
+
+    return $stmt->rowCount();
+}
+
 
