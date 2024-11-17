@@ -16,7 +16,7 @@
             $Completed = countCompletedTasks($conn);
         }else {
             $countMyTask = countMyTasks($conn, $_SESSION['id']);
-            $countOverdue = countTasksOverdue($conn, $_SESSION['id']);
+            $countOverdue = countMyTasksOverdue($conn, $_SESSION['id']);
             $countNodeadline = countMyTasksNoDeadline($conn, $_SESSION['id']);
             $countPending = countMyPendingTasks($conn, $_SESSION['id']);
             $countProgress = countMyInProgressTasks($conn, $_SESSION['id']);

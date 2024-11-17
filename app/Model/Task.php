@@ -135,14 +135,13 @@ function countMyTasks($conn, $id){
     return $stmt->rowCount();
 }
 
-function countTasksOverdue($conn, $id){
-    $sql = "SELECT id FROM tasks WHERE due_date < CURDATE() AND status != 'completed' AND assigned_to=? AND date != '0000-00-00'";
+function countMyTasksOverdue($conn, $id){
+    $sql = "SELECT id FROM tasks WHERE date < CURDATE() AND status != 'completed' AND assigned_to=? AND date != '0000-00-00'";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$id]);
 
     return $stmt->rowCount();
 }
-
 function countMyTasksNoDeadline($conn, $id){
     $sql = "SELECT id FROM tasks WHERE assigned_to=? AND status != 'completed' AND date IS NULL OR date = '0000-00-00'";
     $stmt = $conn->prepare($sql);
